@@ -1,0 +1,586 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Introduction to BioPython &#8212; Python and Biopython</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Strings" href="Strings.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo_final_horizontal.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Python and Biopython</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Variables_Operators.html">
+   Variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Strings.html">
+   Strings
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Introduction to BioPython
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Introduction to BioPython
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sequence-object">
+     Sequence Object
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multiple-sequence-alignment">
+     Multiple Sequence Alignment
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-blast-over-the-internet">
+   Running BLAST over the internet
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#blast-search-using-sequence-file">
+     BLAST search using sequence file
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="introduction-to-biopython">
+<h1>Introduction to BioPython<a class="headerlink" href="#introduction-to-biopython" title="Permalink to this headline">¶</a></h1>
+<p>Python offers a variety of functions to work with text data (Strings) that make it easier to work with biological data such as DNA or protein sequences. BioPython library provides a set of classes that dedicated to parsing and analysis of different type of biological data. The functions avaiable in BioPython helps researcher to progammatically process the data. Below we’ll see some of the features in Biopython for working with sequence and structure data. To install Biopython library run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">biopython</span></code>. For more details regarding Biopython installation and tutorials, please refer to the <a class="reference external" href="https://biopython.org/wiki/Biopython2">Biopython wiki</a>.</p>
+<p>To check the version of Biopython, run the following command.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">Bio</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Bio</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.78
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="sequence-object">
+<h2>Sequence Object<a class="headerlink" href="#sequence-object" title="Permalink to this headline">¶</a></h2>
+<p>To work with sequences, we’ll need the <code class="docutils literal notranslate"><span class="pre">Bio.Seq</span></code> class which has the required functions for reading and writing sequence data. Once we have imported this class we can create objects having required data. The example below shows constructing a sequence object with a DNA sequence and then using the <code class="docutils literal notranslate"><span class="pre">complement()</span></code> and <code class="docutils literal notranslate"><span class="pre">translate()</span></code> functions to find the sequence of the complementary strand and the translated protein sequence, respectively.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">Bio.Seq</span> <span class="kn">import</span> <span class="n">Seq</span>
+<span class="n">new_seqeunce</span> <span class="o">=</span> <span class="n">Seq</span><span class="p">(</span><span class="s1">&#39;AATTGGAACCTT&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Original sequence:&quot;</span><span class="p">,</span> <span class="n">new_seqeunce</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The sequence for the complementary strand is: &quot;</span><span class="p">,</span><span class="n">new_seqeunce</span><span class="o">.</span><span class="n">complement</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The translated protein sequence would be: &quot;</span><span class="p">,</span><span class="n">new_seqeunce</span><span class="o">.</span><span class="n">translate</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Original sequence: AATTGGAACCTT
+The sequence for the complementary strand is:  TTAACCTTGGAA
+The translated protein sequence would be:  NWNL
+</pre></div>
+</div>
+</div>
+</div>
+<p>To create a sequence object by reading sequence from a file, we can use the <code class="docutils literal notranslate"><span class="pre">SeqIO</span></code> class. The <code class="docutils literal notranslate"><span class="pre">parse()</span></code> function in this class can read and write sequences in different formats. This function take two arguments - file name and format, and return an iterator having all the sequences. The code below shows reading a file having multiple sequences and printing the sequences using the seq attribute. Note that this would print sequnces without any annotations. The <code class="docutils literal notranslate"><span class="pre">description</span></code> attribute of SeqIO object can used to print the description of a sequence as given in the input file. The sequence file used in the code below is available <a class="reference external" href="https://doi.org/10.1371/journal.pcbi.1005975.s002">here</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">Bio</span> <span class="kn">import</span> <span class="n">SeqIO</span>
+<span class="n">count</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">for</span> <span class="n">all_seqs</span> <span class="ow">in</span> <span class="n">SeqIO</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;kinases.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;fasta&quot;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">all_seqs</span><span class="o">.</span><span class="n">description</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">all_seqs</span><span class="o">.</span><span class="n">seq</span><span class="p">)</span>
+    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">count</span> <span class="o">==</span> <span class="mi">3</span><span class="p">):</span>
+        <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>consensus seq
+YELLKVL-GKGAFGE--------------------------------------------------------------------V-Y---KAR-D-----------KD-------------------T------G-----E--E--VAVKV----LK-K---G----E-SS----------------K--K-R--K-------------E-------F-LR-EIKI-LKK------L------------------R--------H---PNIVRLYGVF-----------Q-----E-D----------E----D----P----LY--------LVME-YM-------P-GG----SLFD---L---L-R---K--R---R------------------------------------------------------------------------------G-------L-------S-E-------KTLRFIAAQIASGLEYLH-S-K-GI---------IHRDLKPENIL---L--------D--------------------------S------------------D-G-HVKLADF---GL---AR-----------E-----------L-Y----------S---D-------D---------------------------------G-Y--R-------------------T----------T-----T-FVG-T----P-------------------RY--MAPEV--L---------L-------G-------------GG--Y-SKKSDVWSL---GVLLYELLTG---------G--K---P-----P-F------P----G-E-------S---------------NE---E----LL----E-----------KIL------K---------------------G--------------------Y----------------------R---------------------L---P-I-P---E--P----D----C-----S-----P--E---AK---DLIKK--------CLQK-DPEKRPT
+sp|Q22RR1||agc:agc-sar|Tetrahymena sp|Q22RR1||agc:agc-sar|Tetrahymena
+LVYIKEL-GRGNFGS--------------------------------------------------------------------V-N---LVN-E-----------KQ-------------------K------D-----R--L--FAMKV----FI-S---N----Y-IFqr--------------G--I-E--K-------------Y-------I-LR-EKST-LQK------C------------------N--------F---PFIMRYYRSF-----------Y-------D----------N----Y----H----IY--------FMNE-FI-------N-GM----DFFT---V---M-R---E--V---G------------------------------------------------------------------------------L-------F-------N-K-------QQAQFYTAFIILTLQYLN-N-Q-GI---------VYRDLKPENIL---I--------D--------------------------H------------------E-G-WPKLVDM---GT---AK-----------Y-----------L------------Y---D-------Kn--------------------------------Q-Q--L-------------------T----------Rty---S-LVG-T----P-------------------HY--MAPEV--I---------Q-------Q-------------KG--Y-GFAVDIYSL---GVILYELLV----------G--Y---L-----P-Y------Ged--V-D-------D---------------PI---E----VY----Q-----------LIL------E---------------------G-------------------------------------------R---------------------L---G-F-P---N--H----M----K-----N-----R--L---SK---KLISQ--------LMAK-SPEVRLG
+sp|Q234E6||agc:agc-sar|Tetrahymena sp|Q234E6||agc:agc-sar|Tetrahymena
+LIVIKKL-GFGQFGS--------------------------------------------------------------------V-F---LVK-E-----------KG-------------------K------K-----K--L--YGLKC----VS-K---A----Q-VVeq--------------S--L-E--K-------------H-------I-QN-EKQV-MEF------N------------------N--------F---PFVMKFLRSF-----------K-------D----------D----R----C----IY--------FLLE-FI-------Q-GM----ELFD---V---I-R---E--I---G------------------------------------------------------------------------------L-------L-------S-T-------YDSQFYIGSLILTLEYLH-S-N-YI---------IYRDIKPENIM---V--------D--------------------------H------------------A-G-YLKLIDM---GT---AK-----------I-----------M------------K---S-------Ka--------------------------------G-T--V-------------------T----------Rtf---T-IIG-T----P-------------------HY--MAPEV--I---------S-------G-------------KG--Y-NFLVDLWSV---GICLYEFMC----------G--Y---V-----P-F------Aee--A-E-------D---------------PY---E----IY----E-----------EII------K---------------------K-------------------------------------------E---------------------I---Q-F-P---A--Y----M----K-----D-----A--V---AK---QLMLQ--------LLNK-IPEIRLG
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">write()</span></code> function takes three arguments — 1) a sequence object, 2) filename, and 3) file format. The code below reads a fasta file with multiple sequences and then save the first 10 sequences in a new file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_seqs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">seq_record</span> <span class="ow">in</span> <span class="n">SeqIO</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;kinases.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;fasta&quot;</span><span class="p">):</span>
+    <span class="n">all_seqs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seq_record</span><span class="p">)</span>
+<span class="n">SeqIO</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">all_seqs</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">],</span><span class="s2">&quot;test.aln&quot;</span><span class="p">,</span><span class="s2">&quot;clustal&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="multiple-sequence-alignment">
+<h2>Multiple Sequence Alignment<a class="headerlink" href="#multiple-sequence-alignment" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">AlignIO</span></code> class has functions to parse alignment files. The <code class="docutils literal notranslate"><span class="pre">read()</span></code> and <code class="docutils literal notranslate"><span class="pre">write()</span></code> functions have a similar syntax to the corresponding functions in the <code class="docutils literal notranslate"><span class="pre">SeqIO</span></code> class. The alignment object stores sequences in 2D array format such that the rows are number of sequences and columns represent alignment length. To extract a sub-set of an alignment, slicing feature can be used. The code below shows reading an alignment file in fasta format followed by selecting a portion of this alignment and save it in a new file in clustal format. The subset is extracted by giving the range for the rows and columns within square brackets. The numbering for both rows and columns starts with zero. In the example below first ten sequences in the alignment are selected since range of rows is <code class="docutils literal notranslate"><span class="pre">:10</span></code> and the colums range is <code class="docutils literal notranslate"><span class="pre">3:12</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">Bio</span> <span class="kn">import</span> <span class="n">AlignIO</span>
+<span class="n">align1</span> <span class="o">=</span> <span class="n">AlignIO</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;kinases.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;fasta&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">align1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Alignment with 5489 rows and 1094 columns
+YELLKVL-GKGAFGE-----------------------------...RPT consensus
+LVYIKEL-GRGNFGS-----------------------------...RLG sp|Q22RR1||agc:agc-sar|Tetrahymena
+LIVIKKL-GFGQFGS-----------------------------...RLG sp|Q234E6||agc:agc-sar|Tetrahymena
+LEVVKKL-GNGQFGS-----------------------------...RTG sp|Q23KG5||agc:agc-sar|Tetrahymena
+LIYIKTL-AFGQFGP-----------------------------...RLG sp|Q23DN8||agc:agc-sar|Tetrahymena
+LIYIKKL-GVGQFGS-----------------------------...RLG sp|I7MFS4||agc:agc-sar|Tetrahymena
+MIYIKKL-GFGQFGS-----------------------------...RLG sp|I7M3B5||agc:agc-sar|Tetrahymena
+MISIKKL-GFGQFGS-----------------------------...RLG sp|I7MD55||agc:agc-sar|Tetrahymena
+LIYIKKL-GEGQFGI-----------------------------...RLG sp|Q869J9|pkg-2|agc:pkg|Paramecium
+FEMIRVL-GKGCAGK-----------------------------...RIR sp|A8N3F0||agc:agc-unique|Coprinopsis
+TERMVVL-KGNLFGF-----------------------------...RLG sp|D6RN25||agc:agc-unique|Coprinopsis
+YSLTRFL-SQGAQGK-----------------------------...RIH sp|A8P464||agc:agc-unique|Coprinopsis
+FDIISSY-NADSDTR-----------------------------...RLN sp|A8N0Q1||agc:agc-unique|Coprinopsis
+FEKKFVL-GKGSYGK-----------------------------...RLQ sp|Q4Q7M5||agc:agc-unique|Leishmania
+FEILKHI-GSGAYGE-----------------------------...RLG sp|Q19858||agc:agc-unique|Caenorhabditis
+FEMMRVL-GKGCAGK-----------------------------...RM- sp|A0A0B7FBE1|cbk1|agc:ndr|Thanatephorus
+FELLKVL-GVGSFGR-----------------------------...RLG sp|P34102|pkgc|agc:agc-unique|Dictyostelium
+FDLLKVL-GVGSFGR-----------------------------...RLG sp|F4PNA6|pkgc|agc:agc-unique|Dictyostelium
+...
+------------NSE-----------------------------...--- sp|W5L2T9|mlkl|tkl:tkl-unique|Astyanax
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sub_alignment</span> <span class="o">=</span> <span class="n">align1</span><span class="p">[:</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">:</span><span class="mi">12</span><span class="p">]</span> <span class="c1">#[row range, column range]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sub_alignment</span><span class="p">)</span>
+<span class="n">AlignIO</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">sub_alignment</span><span class="p">,</span><span class="s2">&quot;msa1.aln&quot;</span><span class="p">,</span><span class="s2">&quot;clustal&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Alignment with 10 rows and 9 columns
+LKVL-GKGA consensus
+IKEL-GRGN sp|Q22RR1||agc:agc-sar|Tetrahymena
+IKKL-GFGQ sp|Q234E6||agc:agc-sar|Tetrahymena
+VKKL-GNGQ sp|Q23KG5||agc:agc-sar|Tetrahymena
+IKTL-AFGQ sp|Q23DN8||agc:agc-sar|Tetrahymena
+IKKL-GVGQ sp|I7MFS4||agc:agc-sar|Tetrahymena
+IKKL-GFGQ sp|I7M3B5||agc:agc-sar|Tetrahymena
+IKKL-GFGQ sp|I7MD55||agc:agc-sar|Tetrahymena
+IKKL-GEGQ sp|Q869J9|pkg-2|agc:pkg|Paramecium
+IRVL-GKGC sp|A8N3F0||agc:agc-unique|Coprinopsis
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %load msa1.aln</span>
+<span class="n">CLUSTAL</span> <span class="n">X</span> <span class="p">(</span><span class="mf">1.81</span><span class="p">)</span> <span class="n">multiple</span> <span class="n">sequence</span> <span class="n">alignment</span>
+
+
+<span class="n">consensus</span>                           <span class="n">LKVL</span><span class="o">-</span><span class="n">GKGA</span>
+<span class="n">sp</span><span class="o">|</span><span class="n">Q22RR1</span><span class="o">||</span><span class="n">agc</span><span class="p">:</span><span class="n">agc</span><span class="o">-</span><span class="n">sar</span><span class="o">|</span><span class="n">Tetrahy</span>      <span class="n">IKEL</span><span class="o">-</span><span class="n">GRGN</span>
+<span class="n">sp</span><span class="o">|</span><span class="n">Q234E6</span><span class="o">||</span><span class="n">agc</span><span class="p">:</span><span class="n">agc</span><span class="o">-</span><span class="n">sar</span><span class="o">|</span><span class="n">Tetrahy</span>      <span class="n">IKKL</span><span class="o">-</span><span class="n">GFGQ</span>
+<span class="n">sp</span><span class="o">|</span><span class="n">Q23KG5</span><span class="o">||</span><span class="n">agc</span><span class="p">:</span><span class="n">agc</span><span class="o">-</span><span class="n">sar</span><span class="o">|</span><span class="n">Tetrahy</span>      <span class="n">VKKL</span><span class="o">-</span><span class="n">GNGQ</span>
+<span class="n">sp</span><span class="o">|</span><span class="n">Q23DN8</span><span class="o">||</span><span class="n">agc</span><span class="p">:</span><span class="n">agc</span><span class="o">-</span><span class="n">sar</span><span class="o">|</span><span class="n">Tetrahy</span>      <span class="n">IKTL</span><span class="o">-</span><span class="n">AFGQ</span>
+<span class="n">sp</span><span class="o">|</span><span class="n">I7MFS4</span><span class="o">||</span><span class="n">agc</span><span class="p">:</span><span class="n">agc</span><span class="o">-</span><span class="n">sar</span><span class="o">|</span><span class="n">Tetrahy</span>      <span class="n">IKKL</span><span class="o">-</span><span class="n">GVGQ</span>
+<span class="n">sp</span><span class="o">|</span><span class="n">I7M3B5</span><span class="o">||</span><span class="n">agc</span><span class="p">:</span><span class="n">agc</span><span class="o">-</span><span class="n">sar</span><span class="o">|</span><span class="n">Tetrahy</span>      <span class="n">IKKL</span><span class="o">-</span><span class="n">GFGQ</span>
+<span class="n">sp</span><span class="o">|</span><span class="n">I7MD55</span><span class="o">||</span><span class="n">agc</span><span class="p">:</span><span class="n">agc</span><span class="o">-</span><span class="n">sar</span><span class="o">|</span><span class="n">Tetrahy</span>      <span class="n">IKKL</span><span class="o">-</span><span class="n">GFGQ</span>
+<span class="n">sp</span><span class="o">|</span><span class="n">Q869J9</span><span class="o">|</span><span class="n">pkg</span><span class="o">-</span><span class="mi">2</span><span class="o">|</span><span class="n">agc</span><span class="p">:</span><span class="n">pkg</span><span class="o">|</span><span class="n">Parame</span>      <span class="n">IKKL</span><span class="o">-</span><span class="n">GEGQ</span>
+<span class="n">sp</span><span class="o">|</span><span class="n">A8N3F0</span><span class="o">||</span><span class="n">agc</span><span class="p">:</span><span class="n">agc</span><span class="o">-</span><span class="n">unique</span><span class="o">|</span><span class="n">Copr</span>      <span class="n">IRVL</span><span class="o">-</span><span class="n">GKGC</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="running-blast-over-the-internet">
+<h1>Running BLAST over the internet<a class="headerlink" href="#running-blast-over-the-internet" title="Permalink to this headline">¶</a></h1>
+<p>Biopython offers a functionality to programmatically run BLAST on the NCBI servers using the <code class="docutils literal notranslate"><span class="pre">Bio.Blast</span></code> class.</p>
+<p>To run blast online at NCBI servers, <code class="docutils literal notranslate"><span class="pre">Bio.Blast</span></code> can be used which has different function to run Blast and also to parse the output. The <code class="docutils literal notranslate"><span class="pre">NCBIWWW</span></code> library has <code class="docutils literal notranslate"><span class="pre">qblast()</span></code> function that takes three arguments &amp;emdash; 1) blast program (blastp, blastn, etc.), 2) database (any of the databases available at NCBI, and 3) sequence. Once the blast serach is over the output can be saved in a file. This output would be in XML format. You can use <code class="docutils literal notranslate"><span class="pre">read()</span></code> function within the NCBIXML class to parse this output. The code below shows running a blast search using <code class="docutils literal notranslate"><span class="pre">qblast</span></code> against the non-redundant database available at in NCBI.
+The output file saved in the previous step has all the hits identified in the Blast search. These hits follow a hierarchical manner such that each result would have multiple alignments and within each alignment would be multiple high scoring pairs (hsps) i.e. Blast object <span class="math notranslate nohighlight">\(\longrightarrow\)</span> Alignment <span class="math notranslate nohighlight">\(\longrightarrow\)</span> hsps. For more details on this you may refer to the Blast documentation available at NCBI.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">Bio.Blast</span> <span class="kn">import</span> <span class="n">NCBIWWW</span>
+<span class="kn">from</span> <span class="nn">Bio.Blast</span> <span class="kn">import</span> <span class="n">NCBIXML</span>
+
+<span class="n">result_ncbi</span> <span class="o">=</span> <span class="n">NCBIWWW</span><span class="o">.</span><span class="n">qblast</span><span class="p">(</span><span class="s2">&quot;blastn&quot;</span><span class="p">,</span> <span class="s2">&quot;nt&quot;</span><span class="p">,</span> <span class="s2">&quot;8332116&quot;</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;my_blast.xml&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_handle</span><span class="p">:</span>
+    <span class="n">file_handle</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">result_ncbi</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;my_blast.xml&quot;</span><span class="p">)</span>
+<span class="n">blast_record</span> <span class="o">=</span> <span class="n">NCBIXML</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">result_handle</span><span class="p">)</span>
+<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">alignment</span> <span class="ow">in</span> <span class="n">blast_record</span><span class="o">.</span><span class="n">alignments</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">hsp</span> <span class="ow">in</span> <span class="n">alignment</span><span class="o">.</span><span class="n">hsps</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">hsp</span><span class="p">)</span>
+    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">count</span><span class="o">==</span><span class="mi">5</span><span class="p">):</span>
+        <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Score 482 (435 bits), expectation 4.3e-117, alignment length 624
+Query:      59 ACAGAAAATGGGGAGAGAAATGAAGTACTTGGCCATGAAAACTGA...GTA 678
+               || ||||||||| |||| | |||| ||  |||| |||| | ||||... ||
+Sbjct:     278 ACCGAAAATGGGCAGAGGAGTGAATTATATGGCAATGACACCTGA...TTA 901
+Score 468 (423 bits), expectation 2.7e-113, alignment length 590
+Query:      63 AAAATGGGGAGAGAAATGAAGTACTTGGCCATGAAAACTGATCAA...CCC 649
+               |||||||| |||  |||| | || ||||| |||||||| || |||...|||
+Sbjct:      11 AAAATGGGTAGACGAATGGATTATTTGGCGATGAAAACCGAGCAA...CCC 600
+Score 448 (405 bits), expectation 7.2e-108, alignment length 597
+Query:      87 TTGGCCATGAAAACTGATCAATTGGCCGTGGCTAATATGATCGAT...TAG 679
+               ||||||||||||||||| ||| ||||  |||||||| |||| |||...|||
+Sbjct:      81 TTGGCCATGAAAACTGAGCAAATGGCGTTGGCTAATTTGATAGAT...TAG 677
+Score 441 (398 bits), expectation 1.1e-105, alignment length 593
+Query:      65 AATGGGGAGAGAAATGAAGTACTTGGCCATGAAAACTGATCAATT...CTG 655
+               ||||||||| |||  | |  | |||||||||||||||||||    ... ||
+Sbjct:     254 AATGGGGAG-GAA--GGATAATTTGGCCATGAAAACTGATCC---...ATG 838
+Score 439 (397 bits), expectation 3.7e-105, alignment length 596
+Query:      63 AAAATGGGGAGAGAAATGAAGTACTTGGCCATGAAAACTGATCAA...CTG 655
+               |||||||||||    ||| |||  ||||| |||| |||||||| |...|||
+Sbjct:     170 AAAATGGGGAGG---ATGGAGTTTTTGGCTATGAGAACTGATCCA...CTG 756
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">hsps</span></code> object has several attributes including the Blast statistics such as evalue, score, positives, etc. These can be used to extract hits based on certain conditions. E.g., the code below shows saving hits from the previous Blast search with evalue greater than 1e-105 to a new file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;new_file.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_handle</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">alignment</span> <span class="ow">in</span> <span class="n">blast_record</span><span class="o">.</span><span class="n">alignments</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">hsp</span> <span class="ow">in</span> <span class="n">alignment</span><span class="o">.</span><span class="n">hsps</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">hsp</span><span class="o">.</span><span class="n">expect</span> <span class="o">&lt;</span> <span class="mf">1e-105</span><span class="p">):</span>
+                <span class="n">file_handle</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">hsp</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">file_handle</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DONE&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DONE
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="blast-search-using-sequence-file">
+<h2>BLAST search using sequence file<a class="headerlink" href="#blast-search-using-sequence-file" title="Permalink to this headline">¶</a></h2>
+<p>To run the Blast search using a sequence file instead of gi number, we first need to create a seqeunce object and then pass it on to the <code class="docutils literal notranslate"><span class="pre">qblast</span></code> function as shown below. To run this code, save the protein sequence below in a new file example1.fasta.</p>
+<p>MFHPGMTSQPSTSNQMYYDPLYGAEQIVQCNPMDYHQANILCGMQYFNNSHNRYPLLPQMPPQFTNDHPY
+DFPNVPTISTLDEASSFNGFLIPSQPSSYNNNNISCVFTPTPCTSSQASSQPPPTPTVNPTPIPPNAGAV
+LTTAMDSCQQISHVLQCYQQGGEDSDFVRKAIESLVKKLKDKRIELDALITAVTSNGKQPTGCVTIQRSL
+DGRLQVAGRKGVPHVVYARIWRWPKVSKNELVKLVQCQTSSDHPDNICINPYHYERVVSNRITSADQSLH
+VENSPMKSEYLGDAGVIDSCSDWPNTPPDNNFNGGFAPDQPQLVTPIISDIPIDLNQIYVPTPPQLLDNW
+CSIIYYELDTPIGETFKVSARDHGKVIVDGGMDPHGENEGRLCLGALSNVHRTEASEKARIHIGRGVELT
+AHADGNISITSNCKIFVRSGYLDYTHGSEYSSKAHRFTPNESSFTVFDIRWAYMQMLRRSRSSNEAVRAQ
+AAAVAGYAPMSVMPAIMPDSGVDRMRRDFCTIAISFVKAWGDVYQRKTIKETPCWIEVTLHRPLQILDQL
+LKNSSQFGSS</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">Bio.Blast</span> <span class="kn">import</span> <span class="n">NCBIWWW</span>
+<span class="kn">from</span> <span class="nn">Bio.Blast</span> <span class="kn">import</span> <span class="n">NCBIXML</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seq_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;example1.fasta&#39;</span><span class="p">)</span>
+<span class="n">result_handle2</span> <span class="o">=</span> <span class="n">NCBIWWW</span><span class="o">.</span><span class="n">qblast</span><span class="p">(</span><span class="s2">&quot;blastp&quot;</span><span class="p">,</span> <span class="s2">&quot;nr&quot;</span><span class="p">,</span> <span class="n">seq_file</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<span class="n">seq_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;test_blast.xml&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out_handle</span><span class="p">:</span>
+    <span class="n">out_handle</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">result_handle2</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+
+<span class="n">blast_output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;test_blast.xml&quot;</span><span class="p">)</span>    
+<span class="n">blast_record</span> <span class="o">=</span> <span class="n">NCBIXML</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">blast_output</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">blast_record</span><span class="o">.</span><span class="n">alignments</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sp|P45897.1| RecName: Full=Dwarfin sma-4; AltName: Full=MAD protein homolog 3 [Caenorhabditis elegans] &gt;gb|AAA97605.1| SMA-4 [Caenorhabditis elegans]
+           Length = 570
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s say we need only the alignment with the mouse sequence, then, to print first 50 characters of each alignment with the mouse sequence along with corresponding statistics, the following code can be used.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">alignment</span> <span class="ow">in</span> <span class="n">blast_record</span><span class="o">.</span><span class="n">alignments</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s2">&quot;musculus&quot;</span> <span class="ow">in</span> <span class="n">alignment</span><span class="o">.</span><span class="n">title</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">alignment</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">hsp</span> <span class="ow">in</span> <span class="n">alignment</span><span class="o">.</span><span class="n">hsps</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">hsp</span><span class="o">.</span><span class="n">query</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">50</span><span class="p">])</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">hsp</span><span class="o">.</span><span class="n">match</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">50</span><span class="p">])</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">hsp</span><span class="o">.</span><span class="n">sbjct</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">50</span><span class="p">])</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">hsp</span><span class="o">.</span><span class="n">positives</span><span class="p">,</span> <span class="n">hsp</span><span class="o">.</span><span class="n">score</span><span class="p">,</span> <span class="n">hsp</span><span class="o">.</span><span class="n">expect</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ref|NP_001351897.1| mothers against decapentaplegic homolog 4 isoform 3 [Mus musculus] &gt;gb|ADO32892.1| mothers against decapentaplegic-like protein 4 splice variant 3 [Mus musculus]
+TAMDSCQQISHVLQCYQQGGEDSDFVRKAIESLVKKLKDKRIELDALITA
+T+ D+C  I H L C++QGGE   F ++AIESLVKKLK+K+ ELD+LITA
+TSNDACLSIVHSLMCHRQGGESETFAKRAIESLVKKLKEKKDELDSLITA
+272 794.0 6.86183e-96
+</pre></div>
+</div>
+</div>
+</div>
+<p>To save the Blast output in csv format, we can use the <code class="docutils literal notranslate"><span class="pre">csv</span></code> library as shown below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
+<span class="n">csv_out</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;blast_out.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">alignment</span> <span class="ow">in</span> <span class="n">blast_record</span><span class="o">.</span><span class="n">alignments</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">hsp</span> <span class="ow">in</span> <span class="n">alignment</span><span class="o">.</span><span class="n">hsps</span><span class="p">:</span>
+        <span class="n">new_row</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">csv_out</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+        <span class="n">new_row</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="n">alignment</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;|&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">hsp</span><span class="o">.</span><span class="n">positives</span><span class="p">,</span> <span class="n">hsp</span><span class="o">.</span><span class="n">expect</span><span class="p">])</span>
+<span class="n">csv_out</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "bio-env"
+        },
+        kernelOptions: {
+            kernelName: "bio-env",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'bio-env'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="Strings.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Strings</p>
+            </div>
+        </a>
+    </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Manish Datt<br/>
+        
+            &copy; Copyright 2022 bioinfo.guru.<br/>
+          <div class="extra_footer">
+            <a href="https://bioinfo.guru">Online course catalogue</a>
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

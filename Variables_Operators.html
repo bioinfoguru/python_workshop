@@ -1,0 +1,637 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Variables &#8212; Python and Biopython</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Strings" href="Strings.html" />
+    <link rel="prev" title="Introduction to Python and Biopython" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo_final_horizontal.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Python and Biopython</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Strings.html">
+   Strings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="BioPython_Intro.html">
+   Introduction to BioPython
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Variables
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#operators">
+   Operators
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arithmetic-operators">
+     Arithmetic operators
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comparison-operator">
+     Comparison operator
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#logical-operators">
+     Logical operators
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#assignment-operators">
+     Assignment operators
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="variables">
+<h1>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h1>
+<p>In programming variables refers to a “name” for a value. This “name” can have different values over the course of program and hence it is referred as a variable.
+The concept of variable in programming is similar to some of terms used in natural languages to refer to different things. For instance, in a classroom there are students with different <em>names</em>. Here the word <em>name</em> is a variable which has differnt <em>value</em> for each student i.e. their name.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The above statement initializes a variable named ‘a’ with a numeric value of 2 and it is refered to as an <strong>Assignment Statement</strong>. Similarly, the statement below initializes a variable with name ‘test’ and assigns a string value of ‘Happy’</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test</span> <span class="o">=</span> <span class="s1">&#39;Happy&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can print the value of a variable using the <code class="docutils literal notranslate"><span class="pre">print</span></code> command i.e.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Happy
+</pre></div>
+</div>
+</div>
+</div>
+<p>The value assigned to a variable can be changed within the program. This feautre make variable very useful and are extensively used in progamming. A variable, for example, can be used to store user input.</p>
+<p>Each variable in Python has 6 properties associated with it. For now only first three are required since the last three are for advanced programmers. These properties are</p>
+<ol class="simple">
+<li><p>Name</p></li>
+<li><p>Value</p></li>
+<li><p>Type</p></li>
+<li><p>Scope</p></li>
+<li><p>Life time</p></li>
+<li><p>Memory location</p></li>
+</ol>
+<p>The firt two properties i.e. name and value we have already seen above. Type for a variable refers to it’s data type i.e. whether the variable is an integer, float, string, boolean etc.</p>
+<p>In Python, the type for a variable is decided at the time of initialization. This behaviour is different from languages like C where the type of the variable has to be declared explicitly. In the example above, we can change the variable ‘a’ to a non numeric value. To check the type for a particular variable, <code class="docutils literal notranslate"><span class="pre">type()</span></code> function can be used as follows.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">test</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;int&#39;&gt;
+&lt;class &#39;str&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mf">7.0</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Variable names are case sensitive, e.g. in the code below there are four different variables such that their name differ only in the case used for the letters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bat</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">BAT</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">Bat</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">bAT</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">bat</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">BAT</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">Bat</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">bAT</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+5
+6
+7
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="operators">
+<h1>Operators<a class="headerlink" href="#operators" title="Permalink to this headline">¶</a></h1>
+<p>An operator is a special symbol that instructs the compiler/interpreter to execute specific mathematical or logical operations. These symbols <em>operate</em> on set of variable or scaler or both. Operand refers to the value that operator operates on. E.g., in the equation 2+3 ‘+’ is an operator and 2 and 3 are operands.</p>
+<p>In Python there are 6 different classes of operators. These are:</p>
+<ol class="simple">
+<li><p>Arithmetic operators</p></li>
+<li><p>Comparison operators</p></li>
+<li><p>Logical operators</p></li>
+<li><p>Assignment operators</p></li>
+<li><p>Bitwise operators</p></li>
+<li><p>Special operators</p></li>
+</ol>
+<p>Let’s understand each of these classes through some examples</p>
+<div class="section" id="arithmetic-operators">
+<h2>Arithmetic operators<a class="headerlink" href="#arithmetic-operators" title="Permalink to this headline">¶</a></h2>
+<p>As the name suggests this class of operators are used to perform mathematical operation on the operands. Following is the list of arithemetic operators available in Python.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Operator Symbol</p></th>
+<th class="head"><p>Meaning</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>+</p></td>
+<td><p>Addition</p></td>
+<td><p>2 + 2 = 4</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>-</p></td>
+<td><p>Subtraction</p></td>
+<td><p>5 - 2 = 3</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>*</p></td>
+<td><p>Multiplication</p></td>
+<td><p>2 * 3 = 6</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>/</p></td>
+<td><p>Division</p></td>
+<td><p>4 / 2 = 2</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>%</p></td>
+<td><p>Modulus</p></td>
+<td><p>4 % 2 = 0</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>//</p></td>
+<td><p>Floor division</p></td>
+<td><p>5 // 2 = 2</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>**</p></td>
+<td><p>Exponent</p></td>
+<td><p>2 ** 3 = 8</p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="nb">print</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">y</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11
+1
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="comparison-operator">
+<h2>Comparison operator<a class="headerlink" href="#comparison-operator" title="Permalink to this headline">¶</a></h2>
+<p>These operators are used to compare operands and the output from their operation is a boolean value i.e. either <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code> or equivalently <code class="docutils literal notranslate"><span class="pre">1</span></code> or <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<p>Following is the list of arithemetic operators available in Python.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Operator Symbol</p></th>
+<th class="head"><p>Meaning</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>&gt;</p></td>
+<td><p>Greater than</p></td>
+<td><p>3 &gt; 2 is <code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>&lt;</p></td>
+<td><p>Less than</p></td>
+<td><p>3 &lt; 2 is <code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>==</p></td>
+<td><p>Equal to</p></td>
+<td><p>2 == 3 is <code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>!=</p></td>
+<td><p>Not equal to</p></td>
+<td><p>2 != 3 is <code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>&gt;=</p></td>
+<td><p>Greater than or equal to</p></td>
+<td><p>4 &gt;= 2 is <code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>&lt;=</p></td>
+<td><p>Less than or equal to</p></td>
+<td><p>5 &lt;= 2 is <code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">y</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="logical-operators">
+<h2>Logical operators<a class="headerlink" href="#logical-operators" title="Permalink to this headline">¶</a></h2>
+<p>There are 3 logical operators <code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code>, and <code class="docutils literal notranslate"><span class="pre">not</span></code>.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Operator Symbol</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>and</p></td>
+<td><p>True if both operands are true</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>or</p></td>
+<td><p>True if either of the operands is true</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>not</p></td>
+<td><p>True if operands are false</p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">y</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">x</span> <span class="ow">and</span> <span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">x</span> <span class="ow">or</span> <span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="ow">not</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+True
+False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="mi">5</span>
+<span class="n">y</span><span class="o">=</span><span class="mi">6</span>
+<span class="n">z</span><span class="o">=</span><span class="mi">7</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">x</span><span class="o">&lt;</span><span class="n">y</span> <span class="ow">and</span> <span class="n">y</span><span class="o">&lt;</span><span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="assignment-operators">
+<h2>Assignment operators<a class="headerlink" href="#assignment-operators" title="Permalink to this headline">¶</a></h2>
+<p>Operators in this class are used to <code class="docutils literal notranslate"><span class="pre">assign</span></code> values to variables. The syntax for using these operators is variable name followed by operator followed by the value that is to be assigned. Some of the assignment operator behave equivalent to the mathematical operation performed by arithmetic operators.</p>
+<p>Following is the list of assignment operators available in Python.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Operator Symbol</p></th>
+<th class="head"><p>Meaning</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>=</p></td>
+<td><p>Assign value on the right to variable on the left</p></td>
+<td><p>x = 5</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>+=</p></td>
+<td><p>Increment value of the variable by value on the right</p></td>
+<td><p>x += 5 (x = x + 5)</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>-=</p></td>
+<td><p>Decrement value of the variable by value on the right</p></td>
+<td><p>x -= 5 (x = x - 5)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>*=</p></td>
+<td><p>Multiple value of the variable by value on the right</p></td>
+<td><p>x *= 5 (x = x * 5)</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>/=</p></td>
+<td><p>Divide value of the variable by value on the right</p></td>
+<td><p>x /= 5 (x = x / 5)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>%=</p></td>
+<td><p>Modulus for the value of the variable by value on the right</p></td>
+<td><p>x %= 5 (x = x % 5)</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>//=</p></td>
+<td><p>Floor division of value of the variable by value on the right</p></td>
+<td><p>x //= 5 (x = x // 5)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>**=</p></td>
+<td><p>Exponent value of the variable by value on the right</p></td>
+<td><p>x **= 5 (x = x ** 5)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">x</span> <span class="o">*=</span> <span class="mi">2</span>
+<span class="n">y</span> <span class="o">**=</span> <span class="mi">2</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12
+25
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;bool&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="index.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Introduction to Python and Biopython</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="Strings.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Strings</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Manish Datt<br/>
+        
+            &copy; Copyright 2022 bioinfo.guru.<br/>
+          <div class="extra_footer">
+            <a href="https://bioinfo.guru">Online course catalogue</a>
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
